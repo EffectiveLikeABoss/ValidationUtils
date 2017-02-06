@@ -23,6 +23,24 @@ id<IELBInputValidator> validator= [ELBInputValidatorFactory getValidator:ELBIVSa
 [validator isValidEmail:[NSNull null]]; // returns NO
 ```
 
+**NSDictionary+ELBSafe**
+```
+NSDictionary *testDictionary = @{
+                                     @"number" : @1,
+                                     @"string" : @"string",
+                                     @"array" : @[],
+                                     @"dictionary" : @{},
+                                     };
+    
+NSNumber *number=[testDictionary safeNSNumberForKey:@"number"];
+NSString *string=[testDictionary safeNSStringForKey:@"string"];
+NSDictionary *dictionary=[testDictionary safeNSDictionaryForKey:@"dictionary"];
+NSArray *array=[testDictionary safeNSArrayForKey:@"array"];
+
+NSString *string=[testDictionary safeNSStringForKey:@"array"];
+// string is nil cause the value for key 'array' is an NSArray
+```
+
 
 
 
